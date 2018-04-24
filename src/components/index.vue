@@ -47,10 +47,10 @@
                 </tr>
               </tbody>
             </table>
-            <div v-if="Amount !== 0" class="col-md-8 col-lg-7 col-xl-12">
+            <div style="display:none;" class="col-md-8 col-lg-7 col-xl-12">
               <input type="text" class="form-control" placeholder="Description">
             </div>
-            <div v-if="Amount !== 0" class="text-right col-md-8 col-lg-5 col-xl-12" style="height: 44px;padding: 5px 0;">Amount: {{ Amount | FormatPrice }}&nbsp;&nbsp;&nbsp;<button @click="CreatePaymentLink()" data-toggle="modal" data-target="#PaymentLinkForm" type="button" class="btn btn-primary">Payment</button></div>
+            <div v-if="Amount !== 0" class="text-right col-md-12 col-lg-12 col-xl-12" style="height: 44px;padding: 5px 0;">Amount: {{ Amount | FormatPrice }}&nbsp;&nbsp;&nbsp;<button @click="CreatePaymentLink()" data-toggle="modal" data-target="#PaymentLinkForm" type="button" class="btn btn-primary">Payment</button></div>
           </div>
         </div>
         <div class="col-md-1 col-lg-2 col-xl-3"></div>
@@ -364,23 +364,28 @@ export default {
      this.Websock.send("1");
     },
     CreatePaymentLink:function(){//数据发送模板
-      if(this.Description == ""){
-        this.Description = this.Amount + "TNC";
-      }
+      let _this = this;
+      _this.Description = "";
+      _this.CommodityItem.forEach(function(data,index){
+        if(data.quantity > 0){
+          let a = data.name + "*" + data.quantity + ";";
+          _this.Description += a;
+        }
+      });
       var Message = {
          "MessageType":"PaymentLink",
-         "Sender": this.InstantKey + "@" + this.IpPort,
+         "Sender": _this.InstantKey + "@" + _this.IpPort,
          "MessageBody": {
           "Parameter": {
-           "Amount": this.Amount,
+           "Amount": _this.Amount,
            "Assets": "TNC",
-           "Description": this.Description
+           "Description": _this.Description
            }
          }
        }
        console.log(JSON.stringify(Message));
-       this.Websock.send(JSON.stringify(Message));
-       this.Description = "";
+       _this.Websock.send(JSON.stringify(Message));
+       _this.Description = "";
     },
     WebsocketClose(e){  //关闭
      console.log("连接关闭:" + e.code);
