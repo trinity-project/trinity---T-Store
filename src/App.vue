@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <head-nav/>
-    <index/>
+    <head-nav :title="title"/>
+    <index :title="title"/>
   </div>
 </template>
 
@@ -13,7 +13,7 @@ export default {
   name: 'App',
   data () {
     return {
-
+      title: 'T Store'
     }
   },
   mounted:function(){

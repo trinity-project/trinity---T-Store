@@ -11,9 +11,10 @@ export default {
   name: 'headNav',
   data () {
     return {
-      title: 'T Store'
+
     }
   },
+  props:["title"],
   mounted() {
 
   },

@@ -157,6 +157,7 @@ export default {
       LoginFlag:false
     }
   },
+  props:["title"],
   filters:{
     FormatNo:function(val){
       return val+1;
@@ -196,7 +197,7 @@ export default {
      this.$nextTick(function(){
           var _this = this;
          setTimeout(function (){
-             console.log('render complete');
+             //console.log('render complete');
               _this.CreateKey();
               _this.initWebSocket();
           }, 3000);
@@ -365,7 +366,7 @@ export default {
     },
     CreatePaymentLink:function(){//数据发送模板
       let _this = this;
-      _this.Description = "";
+      _this.Description = this.title + ":";
       _this.CommodityItem.forEach(function(data,index){
         if(data.quantity > 0){
           let a = data.name + "*" + data.quantity + ";";
