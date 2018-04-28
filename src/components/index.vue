@@ -114,7 +114,7 @@ export default {
       CommodityItem:[
         {
           "name": "Cucumber",
-          "price": 1,
+          "price": 0.1,
           "img": "static/img/cucumber.png",
           "origin": "China",
           "weight": "500g",
@@ -122,7 +122,7 @@ export default {
         },
         {
           "name": "Pizza",
-          "price": 2,
+          "price": 0.2,
           "img": "static/img/pizza.jpg",
           "origin": "United States",
           "weight": "1kg",
@@ -130,7 +130,7 @@ export default {
         },
         {
           "name": "Cherry",
-          "price": 3,
+          "price": 0.3,
           "img": "static/img/cherry.jpg",
           "origin": "Chile",
           "weight": "200g",
