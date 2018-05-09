@@ -110,7 +110,8 @@ export default {
   name: 'index',
   data () {
     return {
-      IpPort:"118.89.44.106:8766",
+      IpPort:"118.89.44.106",
+      Url:"03c9c849a0bb84284b4cbc2a67ee3cc9523e050c48aa9aedf9998972bd44c7b826",
       CommodityItem:[
         {
           "name": "Cucumber",
@@ -317,7 +318,7 @@ export default {
     },
     initWebSocket(){ //初始化weosocket
      //ws地址
-     const wsuri = "ws://" + this.IpPort;
+     const wsuri = "ws://" + this.IpPort + ":8766";
      this.Websock = new WebSocket(wsuri);
      this.Websock.onmessage = this.WebsocketOnmessage;
      this.Websock.onclose = this.WebsocketClose;
@@ -375,7 +376,8 @@ export default {
       });
       var Message = {
          "MessageType":"PaymentLink",
-         "Sender": _this.InstantKey + "@" + _this.IpPort,
+         "Sender": _this.InstantKey + "@" + _this.IpPort + ":8766",
+         "Receiver":_this.Url + "@" + _this.IpPort + ":8089",
          "MessageBody": {
           "Parameter": {
            "Amount": _this.Amount,
