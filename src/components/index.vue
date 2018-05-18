@@ -110,8 +110,8 @@ export default {
   name: 'index',
   data () {
     return {
-      IpPort:"118.89.44.106",
-      Url:"03c9c849a0bb84284b4cbc2a67ee3cc9523e050c48aa9aedf9998972bd44c7b826",
+      IpPort:"47.254.39.10",
+      Url:"02828081c9ceb674d996780e5dbae95cddb988ac6f2a442e6a748fc794a6a7c820",
       CommodityItem:[
         {
           "name": "Cucumber",
