@@ -13,12 +13,12 @@
           <div class="page-header text-left">
             <h1>Commodity List</h1>
           </div>
-          <div class="col-sm-6 col-md-4" style="margin-top:20px;" v-for="item in CommodityItem">
+          <div class="col-sm-6 col-md-4" style="margin-top:20px;" v-for="(item,index) in CommodityItem" :key="index">
             <div class="thumbnail">
               <img :src="item.img">
               <div class="caption">
                 <h3>{{ item.name }}</h3>
-                <p><a @click="ChangeQuantity(item,1)"class="btn btn-primary" role="button">{{ item.price | FormatPrice}}</a>
+                <p><a @click="ChangeQuantity(item,1)" class="btn btn-primary" role="button">{{ item.price | FormatPrice}}</a>
                    <a @click="CommodityDetails(item)" class="btn btn-default" role="button" data-toggle="modal" data-target="#Details">Details</a></p>
               </div>
             </div>
@@ -37,7 +37,7 @@
                   <th>Edit</th>
                 </tr>
               </thead>
-              <tbody v-for="(item,index) in FormatCommodityItem(CommodityItem)">
+              <tbody v-for="(item,index) in FormatCommodityItem(CommodityItem)" :key="index">
                 <tr>
                   <td>{{ index | FormatNo }}</td>
                   <td>{{ item.name }}</td>
