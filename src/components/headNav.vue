@@ -2,6 +2,7 @@
   <nav class="navbar">
     <div class="container-fluid">
         <h1><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>{{ title }}</h1>
+        <span style="font-size: 13px;margin: 10px;float:left" class="label label-default">For Test Network</span>
     </div>
   </nav>
 </template>
