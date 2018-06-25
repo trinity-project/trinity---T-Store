@@ -1,10 +1,10 @@
 <template>
   <nav class="navbar">
     <div class="container-fluid">
-        <h1 v-if="isTestNet"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>{{ title }} For Test Network</h1>
-        <h1 v-if="!isTestNet"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>{{ title }} For Main Network</h1>
-        <span v-if="isTestNet" @click="ChangeNetFun()" style="font-size: 17px;margin: 8px;float:right;cursor: pointer;" class="label label-default">Main Network</span>
-        <span v-if="!isTestNet" @click="ChangeNetFun()" style="font-size: 17px;margin: 8px;float:right;cursor: pointer;" class="label label-default">Test Network</span>
+        <h1 v-if="isTestNet"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>{{ title }} For TestNet</h1>
+        <h1 v-if="!isTestNet"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>{{ title }} For MainNet</h1>
+        <span v-if="isTestNet" @click="ChangeNetFun()" style="font-size: 17px;margin: 8px;float:right;cursor: pointer;" class="label label-default">Switch to MainNet</span>
+        <span v-if="!isTestNet" @click="ChangeNetFun()" style="font-size: 17px;margin: 8px;float:right;cursor: pointer;" class="label label-default">Switch to TestNet</span>
     </div>
   </nav>
 </template>
