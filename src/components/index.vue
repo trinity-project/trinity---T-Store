@@ -94,8 +94,8 @@
                     <button @click="copyfun1" data-clipboard-target="#Peer" class="btn btn-default btncopy1" type="button"><span class="glyphicon glyphicon-file" aria-hidden="true"></span>Copy</button>
                   </span>
                 </div>
-                <div class="alert alert-info clearfloat" role="alert"><img :src="PaymentQRCode"/><span>Payment Code</span><br>&nbsp;</div>
-                <div class="alert alert-info clearfloat" role="alert"><img :src="PeerQRCode"/><span>TNAP</span><br>(Trinity Network Access Point)</div>
+                <div class="alert alert-info clearfloat" role="alert"><qriously :value="PaymentLink" :size="240" /><span>Payment Code</span><br>&nbsp;</div>
+                <div class="alert alert-info clearfloat" role="alert"><qriously :value="Peer" :size="240" /><span>TNAP</span><br>(Trinity Network Access Point)</div>
               </div>
             </div>
           </div>
@@ -105,13 +105,18 @@
 </template>
 
 <script>
+import Bus from './bus.js'
+import Vue from 'vue'
+import VueQriously from 'vue-qriously'
+Vue.use(VueQriously)
 
 export default {
   name: 'index',
   data () {
     return {
-      IpPort:"47.254.39.10",
-      Url:"02828081c9ceb674d996780e5dbae95cddb988ac6f2a442e6a748fc794a6a7c820",
+      IpPort:"47.97.223.57",
+      Url:"02be2cd38375dae1f5541deb2ca6525c7fdf123b3553346e922d3a8c12b5a22771",
+      isTestNet:true,
       CommodityItem:[
         {
           "name": "Cucumber",
@@ -155,7 +160,7 @@ export default {
       PeerQRCode:"",
       PaymentList:{},
       Websock: null,
-      LoginFlag:false
+      LoginFlag:false,
     }
   },
   props:["title"],
@@ -180,18 +185,6 @@ export default {
         this.GetAssetsBalance();
       },
       deep:true
-    },
-    PaymentLink:{
-      handler:function(PaymentLink){
-        this.PaymentQRCode = "http://qr.liantu.com/api.php?text=" + PaymentLink;
-      },
-      deep:true
-    },
-    Peer:{
-      handler:function(Peer){
-        this.PeerQRCode = "http://qr.liantu.com/api.php?text=" + Peer;
-      },
-      deep:true
     }
   },
   mounted() {
@@ -201,8 +194,24 @@ export default {
              //console.log('render complete');
               _this.CreateKey();
               _this.initWebSocket();
-          }, 3000);
-  	 })
+          }, 1500);
+     }),
+     Bus.$on('ChangeNetFun',(e) => {
+       if(e === true){
+         console.log("切换到测试网");
+         this.isTestNet = true;
+         this.IpPort = "47.97.223.57";
+         this.Url = "02be2cd38375dae1f5541deb2ca6525c7fdf123b3553346e922d3a8c12b5a22771";
+         this.initWebSocket();
+       } 
+       else if(e === false){
+         console.log("切换到主网");
+         this.isTestNet = false;
+         this.IpPort = "39.105.117.43";
+         this.Url = "035395b3fcd2f89b096aac03f53bfc5f7af94b50093a41b840ddd6b3cf563340f2";
+         this.initWebSocket();
+       }
+     })
   },
   methods:{
     CommodityDetails:function(item){
@@ -472,10 +481,10 @@ li a{
 .modal-body{
   text-align: left;
 }
-.modal-body img{
-  width: 300px;
-  float: left;
-  margin-right: 15px;
+.modal-body canvas{
+  width: 100%;
+  /* float: left;
+  margin-right: 15px; */
 }
 #PaymentLinkForm .modal-dialog{
   margin: 170px auto;
