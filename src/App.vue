@@ -13,12 +13,13 @@ export default {
   name: 'App',
   data () {
     return {
-      title: 'T Store'
+      title: 'T Store',
+      version:"0.2.2"
     }
   },
   mounted:function(){
     this.$nextTick(function(){
-
+      this.LogVersion();
     })
   },
   components: {
@@ -26,7 +27,9 @@ export default {
     index
   },
   methods:{
-
+    LogVersion:function(){
+      console.log("Version: " + this.version);
+    }
   }
 }
 </script>
