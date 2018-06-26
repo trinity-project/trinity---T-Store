@@ -60,11 +60,13 @@
               <div class="modal-body clearfloat">
                 <button type="button" class="close closeDetails" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <img :src="activeDetail.img">
-                <h2>{{ activeDetail.name }}</h2>
-                <p>Net Weight: {{ activeDetail.weight }}</p>
-                <p>Price: {{ activeDetail.price | FormatPrice}}</p>
-                <p>Place of origin: {{ activeDetail.origin }}</p>
-                <button @click="DetailsChangeQuantity()" type="button" class="btn btn-primary" style="margin: 20px 0;">Add to Cart</button>
+                <div style="width: calc(100% - 315px);height: 254px;float: left;padding-left: 20px;">
+                  <h2>{{ activeDetail.name }}</h2>
+                  <p>Net Weight: {{ activeDetail.weight }}</p>
+                  <p>Price: {{ activeDetail.price | FormatPrice}}</p>
+                  <p>Place of origin: {{ activeDetail.origin }}</p>
+                  <button @click="DetailsChangeQuantity()" type="button" class="btn btn-primary" style="margin: 20px 0;">Add to Cart</button>
+                </div>
               </div>
             </div>
           </div>
@@ -416,8 +418,8 @@ export default {
   min-height: 600px;
 }
 h2{
-  float: left;
-  width: calc(100% - 315px);
+  /* float: left; */
+  /* width: calc(100% - 315px); */
   margin-top: 0;
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
 }
@@ -433,11 +435,11 @@ p .btn{
   width: 48%;
 }
 .modal-body p{
-  float: left;
-  width: calc(100% - 315px);
+  /* float: left; */
+  /* width: calc(100% - 315px); */
   color: #67919c;
   font-size: 16px;
-  margin-top: 10px;
+  margin-top: 20px;
 }
 
 li a{
@@ -474,6 +476,13 @@ li a{
 }
 .form-group{
   text-align: left;
+}
+.modal-content{
+  width: 600px;
+}
+.modal-content img{
+  width:315px;
+  float: left;
 }
 .modal-dialog {
   margin: 300px auto;
