@@ -210,7 +210,7 @@ export default {
          console.log("切换到主网");
          this.isTestNet = false;
          this.IpPort = "39.105.117.43";
-         this.Url = "035395b3fcd2f89b096aac03f53bfc5f7af94b50093a41b840ddd6b3cf563340f2";
+         this.Url = "03cc235ab489663bddfaca8fb00f43801deda58d2a99421aef6f1275b319b08b8f";
          this.initWebSocket();
        }
      })
